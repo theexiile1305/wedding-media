@@ -1,26 +1,35 @@
 {
-  "name": "weeding-photo-uploader",
+  "name": "weeding-media",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier:format": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.4"
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.4",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4"
-  }
+    "prettier": "^3.2.5",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.4.0"
 }

@@ -59,11 +59,11 @@ const Uploader = () => {
         body: body,
       })
         .then((res) => {
-          if (res.status !== 200) throw Error('Could not upload file');
+          if (res.status !== 200) throw Error(`Could not upload file, cause response status ${res.status}`);
           toast('Successfully uploaded media.');
         })
         .catch((err) => {
-          toast('Could not upload file');
+          toast(`Could not upload file, cause of unexpected behavior ${err}.`);
         })
         .finally(() => {
           setSaving(false);

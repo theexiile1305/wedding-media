@@ -18,6 +18,8 @@ export const POST = async (req: Request) => {
       },
     });
 
+    console.log(`Try to upload file ${filename}`);
+
     await client
       .send(
         new PutObjectCommand({
@@ -26,7 +28,13 @@ export const POST = async (req: Request) => {
           Body: file,
           ContentType: contentType,
         }),
-      );
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     return NextResponse.json(null, { status: 200 });
   } catch (error) {

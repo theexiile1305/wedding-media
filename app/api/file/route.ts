@@ -26,10 +26,7 @@ export const POST = async (req: Request) => {
           Body: file,
           ContentType: contentType,
         }),
-      )
-      .catch((error) => {
-        console.log(error);
-      });
+      );
 
     return NextResponse.json(null, { status: 200 });
   } catch (error) {

@@ -59,11 +59,13 @@ const Uploader = () => {
         body: body,
       })
         .then((res) => {
-          if (res.status !== 200) throw Error(`Could not upload file, cause response status ${res.status}`);
-          toast('Successfully uploaded media.');
+          console.error(res.status)
+          if (res.status !== 200) throw Error(`Upload war leider nicht erfolgreich.`);
+          toast('Upload war erfolgreich.');
         })
         .catch((err) => {
-          toast(`Could not upload file, cause of unexpected behavior ${err}.`);
+          console.error(err);
+          toast(`Upload war leider nicht erfolgreich.`);
         })
         .finally(() => {
           setSaving(false);
@@ -75,8 +77,7 @@ const Uploader = () => {
     <form className="grid gap-6" onSubmit={handleSubmit}>
       <div>
         <div className="space-y-1 mb-4">
-          <h2 className="text-xl font-semibold">Upload your wedding media</h2>
-          <p className="text-sm text-gray-500">Many thanks in advance!</p>
+          <h2 className="text-xl font-semibold">Lade deine Fotos bitte hier hoch!</h2>
         </div>
         <label
           htmlFor="image-upload"
@@ -94,10 +95,10 @@ const Uploader = () => {
           >
             <DragActiveIcon dragActive={dragActive} />
             <p className="mt-2 text-center text-sm text-gray-500">
-              Drag and drop or click to upload.
+              Hier klicken zum Hochladen.
             </p>
             <p className="mt-2 text-center text-sm text-black-500">
-              Currently there are {numberOfFiles} files selected.
+              Aktuell sind {numberOfFiles} Dateien selektiert.
             </p>
             <span className="sr-only">Media Upload</span>
           </div>
@@ -120,7 +121,7 @@ const Uploader = () => {
         {saving ? (
           <LoadingDots color="#808080" />
         ) : (
-          <p className="text-sm">Confirm</p>
+          <p className="text-sm">Bestätigen</p>
         )}
       </button>
     </form>

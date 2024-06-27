@@ -77,7 +77,7 @@ const Uploader = () => {
     <form className="grid gap-6" onSubmit={handleSubmit}>
       <div>
         <div className="space-y-1 mb-4">
-          <h2 className="text-xl font-semibold">Lade deine Fotos bitte hier hoch!</h2>
+          <h2 className="text-xl font-semibold">Lade deine Fotos hoch!</h2>
         </div>
         <label
           htmlFor="image-upload"

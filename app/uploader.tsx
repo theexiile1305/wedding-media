@@ -57,8 +57,10 @@ const Uploader = () => {
       const currentFile = files[i];
       const body = await currentFile.text();
       await uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          console.log(
+            `Upload of ${currentFile.name} was successfully uploaded.`,
+          );
         })
         .catch((err) => {
           isError = true;

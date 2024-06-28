@@ -66,8 +66,8 @@ const Uploader = () => {
         });
     }
 
-    if (isError) toast('Upload war erfolgreich.');
-    else toast(`Upload war leider nicht erfolgreich.`);
+    if (isError) toast(`Upload war leider nicht erfolgreich.`);
+    else toast('Upload war erfolgreich.');
 
     setSaving(false);
   };

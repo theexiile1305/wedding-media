@@ -55,7 +55,7 @@ const Uploader = () => {
       uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
         .then((res) => {
           console.log(res);
-          toast('Upload war erfolgreich.');
+          toast(`Upload ${i}/${files.length} war erfolgreich.`);
         })
         .catch((err) => {
           console.error(err);

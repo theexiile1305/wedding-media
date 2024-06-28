@@ -47,21 +47,28 @@ const Uploader = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
     setSaving(true);
+
     const files = fileList!!;
+    let isError = false;
+
     for (let i = 0; i < files.length; i++) {
       const currentFile = files[i];
       const body = await currentFile.text();
-      uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
+      await uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
         .then((res) => {
           console.log(res);
-          toast(`Upload ${i}/${files.length} war erfolgreich.`);
         })
         .catch((err) => {
+          isError = true;
           console.error(err);
-          toast(`Upload war leider nicht erfolgreich.`);
-        })
+        });
     }
+
+    if (isError) toast('Upload war erfolgreich.');
+    else toast(`Upload war leider nicht erfolgreich.`);
+
     setSaving(false);
   };
 

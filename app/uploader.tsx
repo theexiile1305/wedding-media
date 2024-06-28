@@ -61,10 +61,8 @@ const Uploader = () => {
           console.error(err);
           toast(`Upload war leider nicht erfolgreich.`);
         })
-        .finally(() => {
-          setSaving(false);
-        });
     }
+    setSaving(false);
   };
 
   return (

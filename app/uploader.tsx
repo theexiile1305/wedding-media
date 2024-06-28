@@ -4,6 +4,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import LoadingDots from './loading-dots';
 import DragActiveIcon from '@/app/dragActiveIcon';
 import toast from 'react-hot-toast';
+import { uploadFile } from '@/app/aws';
 
 const Uploader = () => {
   const [fileList, setFileList] = useState<FileList>();
@@ -49,18 +50,11 @@ const Uploader = () => {
     setSaving(true);
     const files = fileList!!;
     for (let i = 0; i < files.length; i++) {
-      const body = await files[i].text();
-      fetch('/api/file', {
-        method: 'POST',
-        headers: {
-          'content-type': files[i].type,
-          'file-ending': files[i].name.split('.')[1],
-        },
-        body: body,
-      })
+      const currentFile = files[i];
+      const body = await currentFile.text();
+      uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
         .then((res) => {
-          console.error(res.status)
-          if (res.status !== 200) throw Error(`Upload war leider nicht erfolgreich.`);
+          console.log(res);
           toast('Upload war erfolgreich.');
         })
         .catch((err) => {

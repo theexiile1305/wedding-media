@@ -3,7 +3,7 @@ import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 export const uploadFile = async (
   fileEnding: string,
   contentType: string,
-  file: string,
+  file: ArrayBuffer,
 ) => {
   const uuid = window.crypto.randomUUID();
   const filename = `${uuid}.${fileEnding}`;
@@ -21,7 +21,7 @@ export const uploadFile = async (
     new PutObjectCommand({
       Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME,
       Key: filename,
-      Body: file,
+      Body:  Buffer.from(file),
       ContentType: contentType,
     }),
   );

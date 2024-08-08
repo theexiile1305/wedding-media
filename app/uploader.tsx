@@ -55,7 +55,7 @@ const Uploader = () => {
 
     for (let i = 0; i < files.length; i++) {
       const currentFile = files[i];
-      const body = await currentFile.text();
+      const body = await currentFile.arrayBuffer();
       await uploadFile(currentFile.name.split('.')[1], currentFile.type, body)
         .then(() => {
           console.log(
